@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:online_shop/feature/home/home_view.dart';
 import 'package:online_shop/product/initialize/application_start.dart';
 
 Future<void> main() async {
-  ApplicationStart.init();
+  await ApplicationStart.init();
   runApp(const MyApp());
 }
 
@@ -17,8 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: 
+      home: HomeView(),
     );
   }
 }
-

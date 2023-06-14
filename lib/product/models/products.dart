@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:online_shop/product/utility/base/base_firebase_model.dart';
 
-class Products extends Equatable {
+class Products extends Equatable with IdModel, BaseFirebaseModel<Products> {
   final String? category;
   final String? categoryId;
   final String? title;
@@ -39,7 +40,8 @@ class Products extends Equatable {
     };
   }
 
-  factory Products.fromJson(Map<String, dynamic> json) {
+  @override
+  Products fromJSon(Map<String, dynamic> json) {
     return Products(
       category: json['category'] as String?,
       categoryId: json['categoryId'] as String?,
@@ -47,4 +49,8 @@ class Products extends Equatable {
       image: json['image'] as String?,
     );
   }
+
+  @override
+  // TODO: implement id
+  String? get id => throw UnimplementedError();
 }
