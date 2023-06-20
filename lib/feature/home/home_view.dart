@@ -46,7 +46,7 @@ class _HomeListView extends StatelessWidget {
           AsyncSnapshot<QuerySnapshot<Products?>> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
-            return Placeholder();
+            return const Placeholder();
           case ConnectionState.waiting:
           case ConnectionState.active:
             return LinearProgressIndicator();
@@ -63,11 +63,9 @@ class _HomeListView extends StatelessWidget {
                           Image.network(
                             values[index]?.image ?? '',
                             height: context.dynamicHeight(.1),
-                            fit: BoxFit.contain,
-                            scale: 1.0,
                           ),
                           Text(
-                            values[index]?.title ?? "",
+                            values[index]?.title ?? '',
                             style: context.textTheme.labelLarge,
                           )
                         ],

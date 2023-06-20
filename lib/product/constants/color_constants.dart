@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class colorConstants {
-  final Color primaryColor = Color(0xfffe7362);
-  final Color dirtyWhite = Color(0xffEAE7E6);
-  final Color black = Colors.black;
+class ColorConstants {
+  static Color primaryColor = const Color(0xfffe7362);
+  static Color dirtyWhite = const Color(0xffEAE7E6);
+  static Color black = Colors.black;
+  static Color white = Colors.white;
 }

@@ -39,6 +39,7 @@ dependencies:
   flutter_riverpod: ^2.3.6
   kartal:
   equatable: ^2.0.5
+  animated_text_kit: ^4.2.2
 
   #Firebase
   firebase_core: ^2.13.1
