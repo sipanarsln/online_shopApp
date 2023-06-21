@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:online_shop/product/models/products.dart';
 
 abstract class IdModel {
   String? get id;
