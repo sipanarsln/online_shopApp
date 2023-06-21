@@ -1,6 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:online_shop/feature/home/home_view.dart';
+import 'package:online_shop/feature/splash/splash_view.dart';
 import 'package:online_shop/product/initialize/application_start.dart';
 
 Future<void> main() async {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeView(),
+      home: const SplashView(),
     );
   }
 }

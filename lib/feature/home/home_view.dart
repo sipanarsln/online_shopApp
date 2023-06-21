@@ -49,31 +49,32 @@ class _HomeListView extends StatelessWidget {
             return const Placeholder();
           case ConnectionState.waiting:
           case ConnectionState.active:
-            return LinearProgressIndicator();
+            return const LinearProgressIndicator();
           case ConnectionState.done:
             if (snapshot.hasData) {
               final values = snapshot.data!.docs.map((e) => e.data()).toList();
 
               return ListView.builder(
-                  itemCount: values.length,
-                  itemBuilder: (BuildContext context, index) {
-                    return Card(
-                      child: Column(
-                        children: [
-                          Image.network(
-                            values[index]?.image ?? '',
-                            height: context.dynamicHeight(.1),
-                          ),
-                          Text(
-                            values[index]?.title ?? '',
-                            style: context.textTheme.labelLarge,
-                          )
-                        ],
-                      ),
-                    );
-                  });
+                itemCount: values.length,
+                itemBuilder: (BuildContext context, index) {
+                  return Card(
+                    child: Column(
+                      children: [
+                        Image.network(
+                          values[index]?.image ?? '',
+                          height: context.dynamicHeight(.1),
+                        ),
+                        Text(
+                          values[index]?.title ?? '',
+                          style: context.textTheme.labelLarge,
+                        )
+                      ],
+                    ),
+                  );
+                },
+              );
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
         }
       },
