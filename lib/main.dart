@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_shop/feature/home/home_view.dart';
+import 'package:online_shop/auth/authentication_view.dart';
 import 'package:online_shop/feature/splash/splash_view.dart';
+import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/initialize/application_start.dart';
 
 Future<void> main() async {
@@ -15,11 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: StringConstants.appName,
+      theme: ThemeData.light(
+        useMaterial3: true,
       ),
-      home: const SplashView(),
+      home: const AuthenticationView(),
     );
   }
 }
