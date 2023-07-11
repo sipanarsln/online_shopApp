@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_shop/auth/authentication_view.dart';
-import 'package:online_shop/feature/splash/splash_view.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
+import 'package:online_shop/product/initialize/app_theme.dart';
 import 'package:online_shop/product/initialize/application_start.dart';
 
 Future<void> main() async {
   await ApplicationStart.init();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,11 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: true,
       title: StringConstants.appName,
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ),
       home: const AuthenticationView(),
+      theme: AppTheme(context).theme,
     );
   }
 }
