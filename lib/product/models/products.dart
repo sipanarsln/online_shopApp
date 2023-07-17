@@ -2,17 +2,16 @@ import 'package:equatable/equatable.dart';
 import 'package:online_shop/product/utility/base/base_firebase_model.dart';
 
 class Products extends Equatable with IdModel, BaseFirebaseModel<Products> {
-  final String? category;
-  final String? categoryId;
-  final String? title;
-  final String? image;
-
   Products({
     this.category,
     this.categoryId,
     this.title,
     this.image,
   });
+  final String? category;
+  final String? categoryId;
+  final String? title;
+  final String? image;
 
   @override
   List<Object?> get props => [category, categoryId, title, image];
@@ -51,6 +50,5 @@ class Products extends Equatable with IdModel, BaseFirebaseModel<Products> {
   }
 
   @override
-  // TODO: implement id
   String? get id => throw UnimplementedError();
 }

@@ -13,7 +13,7 @@ abstract class BaseFirebaseModel<T extends IdModel> {
     if (value == null) {
       return null;
     }
-    value.addEntries([MapEntry("id", snapshot.id)]);
+    value.addEntries([MapEntry('id', snapshot.id)]);
     return fromJSon(value);
   }
 }

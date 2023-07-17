@@ -4,9 +4,11 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:online_shop/auth/authentication_provider.dart';
+import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
-
-import 'authentication_provider.dart';
+import 'package:online_shop/product/widget/text/sub_title.dart';
+import 'package:online_shop/product/widget/text/title_text.dart';
 
 class AuthenticationView extends ConsumerStatefulWidget {
   const AuthenticationView({super.key});
@@ -49,7 +51,6 @@ class _AuthenticationViewState extends ConsumerState<AuthenticationView> {
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const _Header(),
                   Padding(
@@ -83,25 +84,21 @@ class _AuthenticationViewState extends ConsumerState<AuthenticationView> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({
-    super.key,
-  });
+  const _Header();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          StringConstants.loginWelcomeBack,
-          style: context.textTheme.headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+        TitleText(
+          text: StringConstants.loginWelcomeBack,
+          color: ColorConstants.black,
         ),
         Padding(
           padding: context.verticalPaddingLow,
-          child: Text(
-            StringConstants.loginWelcomeDetail,
-            style: context.textTheme.titleMedium,
+          child: const SubTitle(
+            text: StringConstants.loginWelcomeDetail,
           ),
         ),
       ],

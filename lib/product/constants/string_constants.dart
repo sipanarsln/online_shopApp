@@ -14,4 +14,6 @@ class StringConstants {
       'I am happy to see you again. You can continue where you left off by the login';
 
   static const String contunieToApp = 'Continue to app';
+  static const String homeWelcomeBack = 'Welcome back!';
+  static const String homeSearchHint = 'Search';
 }

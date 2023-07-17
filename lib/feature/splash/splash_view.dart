@@ -3,12 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:online_shop/feature/home/home_view.dart';
 import 'package:online_shop/feature/splash/splash_proiver.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/enums/icon_constants.dart';
-
-import '../home/home_view.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_shop/product/enums/cache_items.dart';
 
 class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
-  AuthenticationNotifier() : super(AuthenticationState());
+  AuthenticationNotifier() : super(const AuthenticationState());
 
   Future<void> fetchUserDetail(User? user) async {
     if (user == null) return;
@@ -20,7 +20,7 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
 }
 
 class AuthenticationState extends Equatable {
-  AuthenticationState({this.isRedirect = false});
+  const AuthenticationState({this.isRedirect = false});
 
   final bool isRedirect;
 

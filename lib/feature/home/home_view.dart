@@ -1,83 +1,125 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:online_shop/product/models/products.dart';
+import 'package:online_shop/product/constants/color_constants.dart';
+import 'package:online_shop/product/constants/string_constants.dart';
+import 'package:online_shop/product/widget/text/sub_title.dart';
+import 'package:online_shop/product/widget/text/title_text.dart';
 
-import '../../product/utility/exception/custom_exception.dart';
+part './sub_view/home_chips.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _HomeListView(),
+    return Material(
+      child: SafeArea(
+        child: ListView(
+          padding: context.paddingNormal,
+          children: [
+            const _Header(),
+            const SizedBox(height: 25),
+            const _Search(),
+            const SizedBox(height: 25),
+            const Placeholder(fallbackHeight: 200),
+            const _TagListView(),
+            SizedBox(
+              height: context.dynamicHeight(.6),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  return const Placeholder();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class _HomeListView extends StatelessWidget {
-  const _HomeListView({
-    super.key,
-  });
+class _TagListView extends StatelessWidget {
+  const _TagListView();
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference products =
-        FirebaseFirestore.instance.collection("products");
+    return SizedBox(
+      height: context.dynamicHeight(.1),
+      child: ListView.builder(
+        physics: const ClampingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemExtent: 115,
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {
+          if (index.isOdd) {
+            return const _ActiveChip();
+          }
+          return const _PassiveChip();
+        },
+      ),
+    );
+  }
+}
 
-    final response = products.withConverter(
-      fromFirestore: (snapshot, options) {
-        return Products().fromFirebase(snapshot);
-      },
-      toFirestore: (value, options) {
-        if (value == null) throw FirebaseCustomException("$value not null .");
-        return value.toJson();
-      },
-    ).get();
-    return FutureBuilder(
-      future: response,
-      builder: (BuildContext context,
-          AsyncSnapshot<QuerySnapshot<Products?>> snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-            return const Placeholder();
-          case ConnectionState.waiting:
-          case ConnectionState.active:
-            return const LinearProgressIndicator();
-          case ConnectionState.done:
-            if (snapshot.hasData) {
-              final values = snapshot.data!.docs.map((e) => e.data()).toList();
+class _Search extends StatelessWidget {
+  const _Search();
 
-              return ListView.builder(
-                itemCount: values.length,
-                itemBuilder: (BuildContext context, index) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        Image.network(
-                          values[index]?.image ?? '',
-                          height: context.dynamicHeight(.1),
-                        ),
-                        Text(
-                          values[index]?.title ?? '',
-                          style: context.textTheme.labelLarge,
-                        )
-                      ],
-                    ),
-                  );
-                },
-              );
-            } else {
-              return const SizedBox();
-            }
-        }
-      },
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      cursorColor: ColorConstants.primaryColor,
+      maxLength: 30,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        filled: true,
+        fillColor: ColorConstants.grayLighter,
+        prefixIcon: const Icon(Icons.search_outlined),
+        suffixIcon: const Icon(Icons.format_list_bulleted_outlined),
+        hintText: StringConstants.homeSearchHint,
+      ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TitleText(
+              text: StringConstants.homeWelcomeBack,
+              color: ColorConstants.primaryColor,
+            ),
+            const SubTitle(text: 'Serhat Celik')
+          ],
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.notifications_none_outlined,
+            size: 40,
+            color: ColorConstants.primaryColor,
+          ),
+        ),
+      ],
     );
   }
 }

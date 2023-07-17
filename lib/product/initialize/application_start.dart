@@ -16,7 +16,8 @@ class ApplicationStart {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     FirebaseUIAuth.configureProviders(
-        [EmailAuthProvider(), GoogleProvider(clientId: "")]);
+      [EmailAuthProvider(), GoogleProvider(clientId: '')],
+    );
 
     await AppCache.instance.setup();
   }
