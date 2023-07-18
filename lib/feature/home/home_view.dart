@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:online_shop/feature/home/sub_view/home_products_list_view.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/widget/text/sub_title.dart';
@@ -40,6 +41,7 @@ class HomeView extends StatelessWidget {
                 },
               ),
             ),
+            const HomeListView()
           ],
         ),
       ),
