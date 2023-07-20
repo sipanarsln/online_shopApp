@@ -4,7 +4,8 @@ import 'package:kartal/kartal.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/models/products.dart';
 import 'package:online_shop/product/utility/exception/custom_exception.dart';
-import 'package:online_shop/product/widget/text/title_text.dart';
+
+import '../../../product/widget/text/product_name.dart';
 
 class HomeListView extends StatelessWidget {
   const HomeListView({
@@ -39,7 +40,13 @@ class HomeListView extends StatelessWidget {
           case ConnectionState.done:
             if (snapshot.hasData) {
               final values = snapshot.data!.docs.map((e) => e.data()).toList();
-              return ListView.builder(
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 300,
+                  childAspectRatio: 5 / 8,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
                 itemCount: values.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
@@ -48,10 +55,12 @@ class HomeListView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.network(
+                          fit: BoxFit.cover,
                           values[index]?.image ?? '',
-                          height: context.dynamicHeight(.1),
+                          height: context.dynamicHeight(.2),
                         ),
-                        TitleText(
+                        SizedBox(height: 10),
+                        ProductName(
                           text: values[index]?.title ?? '',
                           color: ColorConstants.black,
                         )

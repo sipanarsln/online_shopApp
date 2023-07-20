@@ -24,23 +24,23 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 25),
             const Placeholder(fallbackHeight: 200),
             const _TagListView(),
-            SizedBox(
-              height: context.dynamicHeight(.6),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                ),
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return const Placeholder();
-                },
-              ),
-            ),
+            // SizedBox(
+            //   height: context.dynamicHeight(.6),
+            //   child: GridView.builder(
+            //     shrinkWrap: true,
+            //     physics: const ClampingScrollPhysics(),
+            //     gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            //       maxCrossAxisExtent: 200,
+            //       childAspectRatio: 3 / 3,
+            //       crossAxisSpacing: 20,
+            //       mainAxisSpacing: 20,
+            //     ),
+            //     itemCount: 10,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return const Placeholder();
+            //     },
+            //   ),
+            // ),
             const HomeListView()
           ],
         ),

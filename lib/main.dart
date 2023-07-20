@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:online_shop/feature/home/home_view.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/initialize/app_theme.dart';
 import 'package:online_shop/product/initialize/application_start.dart';
+
+import 'feature/splash/splash_view.dart';
 
 Future<void> main() async {
   await ApplicationStart.init();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: StringConstants.appName,
-      home: const HomeView(),
+      home: const SplashView(),
       theme: AppTheme(context).theme,
     );
   }
