@@ -18,11 +18,20 @@ class HomeView extends StatelessWidget {
         child: ListView(
           padding: context.paddingNormal,
           children: [
-            const _Header(),
-            const SizedBox(height: 25),
-            const _Search(),
-            const SizedBox(height: 25),
-            const Placeholder(fallbackHeight: 200),
+            _Header(),
+            SizedBox(height: 25),
+            _Search(),
+            SizedBox(height: 25),
+            Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: const DecorationImage(
+                  image: AssetImage('assets/image/special_offer.jpg'),
+                ),
+              ),
+            ),
             const _TagListView(),
             // SizedBox(
             //   height: context.dynamicHeight(.6),
@@ -41,7 +50,7 @@ class HomeView extends StatelessWidget {
             //     },
             //   ),
             // ),
-            const HomeListView()
+            HomeListView()
           ],
         ),
       ),
@@ -110,7 +119,10 @@ class _Header extends StatelessWidget {
               text: StringConstants.homeWelcomeBack,
               color: ColorConstants.primaryColor,
             ),
-            const SubTitle(text: 'Serhat Celik')
+            SubTitle(
+              text: 'Serhat Celik',
+              color: ColorConstants.gray,
+            )
           ],
         ),
         IconButton(

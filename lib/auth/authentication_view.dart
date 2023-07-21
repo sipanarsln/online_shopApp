@@ -97,8 +97,9 @@ class _Header extends StatelessWidget {
         ),
         Padding(
           padding: context.verticalPaddingLow,
-          child: const SubTitle(
+          child: SubTitle(
             text: StringConstants.loginWelcomeDetail,
+            color: ColorConstants.black,
           ),
         ),
       ],

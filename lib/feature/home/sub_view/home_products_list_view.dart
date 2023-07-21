@@ -5,7 +5,8 @@ import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/models/products.dart';
 import 'package:online_shop/product/utility/exception/custom_exception.dart';
 
-import '../../../product/widget/text/product_name.dart';
+import '../../../product/widget/text/product_name_text.dart';
+import '../../../product/widget/text/product_price_text.dart';
 
 class HomeListView extends StatelessWidget {
   const HomeListView({
@@ -42,27 +43,66 @@ class HomeListView extends StatelessWidget {
               final values = snapshot.data!.docs.map((e) => e.data()).toList();
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 300,
-                  childAspectRatio: 5 / 8,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
+                  maxCrossAxisExtent: 195,
+                  childAspectRatio: 7 / 10,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 15,
                 ),
                 itemCount: values.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
                   return Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.network(
                           fit: BoxFit.cover,
                           values[index]?.image ?? '',
+                          // ignore: deprecated_member_use
                           height: context.dynamicHeight(.2),
                         ),
-                        SizedBox(height: 10),
-                        ProductName(
-                          text: values[index]?.title ?? '',
-                          color: ColorConstants.black,
+                        Padding(
+                          padding: context.paddingLow / 1.3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ProductName(
+                                text: values[index]?.title ?? '',
+                                color: ColorConstants.black,
+                              ),
+                              ProductPrice(
+                                text: values[index]?.price ?? '',
+                                color: ColorConstants.primaryColor,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              height: 30,
+                              width: 30,
+                              margin: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: ColorConstants.primaryColor,
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                iconSize: 20,
+                                padding: EdgeInsets.only(bottom: 2, right: 0),
+                                icon: const Icon(Icons.shopping_bag_outlined),
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
                         )
                       ],
                     ),
