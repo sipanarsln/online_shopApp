@@ -25,7 +25,7 @@ class _SplashViewState extends ConsumerState<SplashView> {
   Future<void> loadData() async {
     await FirebaseFirestore.instance.collection('products').get();
     // ignore: inference_failure_on_instance_creation
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 10));
 
     // ignore: use_build_context_synchronously
     await Navigator.pushReplacement(
@@ -43,9 +43,17 @@ class _SplashViewState extends ConsumerState<SplashView> {
     loadData();
   }
 
+  final colorizeColors = [
+    ColorConstants.primaryColor,
+    const Color(0xffEB412A),
+    Colors.yellow,
+    Colors.red,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff13C0EB),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -53,16 +61,34 @@ class _SplashViewState extends ConsumerState<SplashView> {
             IconConstants.appIcon.toImage,
             AnimatedTextKit(
               animatedTexts: [
-                WavyAnimatedText(
+                ColorizeAnimatedText(
                   StringConstants.appName,
-                  textStyle: context.textTheme.headlineSmall?.copyWith(
-                    color: ColorConstants.black,
+                  colors: colorizeColors,
+                  textStyle: context.textTheme.headlineMedium!.copyWith(
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 10,
+                    fontSize: 55,
+                    shadows: [
+                      Shadow(
+                        color: ColorConstants.black,
+                        offset: const Offset(5, 3),
+                      )
+                    ],
                   ),
-                ),
+                )
               ],
             ),
+
+            // AnimatedTextKit(
+            //   animatedTexts: [
+            //     WavyAnimatedText(
+            //       StringConstants.appName,
+            //       textStyle: context.textTheme.headlineMedium?.copyWith(
+            //         fontWeight: FontWeight.bold,
+            //         letterSpacing: 10,
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

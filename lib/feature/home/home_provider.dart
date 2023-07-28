@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../product/models/products.dart';
-import '../../product/utility/exception/custom_exception.dart';
+import 'package:online_shop/product/models/products.dart';
+import 'package:online_shop/product/utility/exception/custom_exception.dart';
 
 class HomeNotifier extends StateNotifier<HomeState> {
   HomeNotifier() : super(const HomeState());
@@ -24,7 +24,7 @@ class HomeNotifier extends StateNotifier<HomeState> {
     ).get();
 
     if (responce.docs.isNotEmpty) {
-      final values = responce.docs.map((e) => e.data()).toList();
+      final values = responce.docs.map((e) => e.data()!).toList();
       state = state.copyWith(products: values);
     }
   }
@@ -36,7 +36,7 @@ class HomeState extends Equatable {
   final List<Products>? products;
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object> get props => [];
 
   HomeState copyWith({
     List<Products>? products,
