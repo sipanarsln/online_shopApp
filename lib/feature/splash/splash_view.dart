@@ -9,6 +9,8 @@ import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/enums/icon_constants.dart';
 
+import '../home/sub_view/bottom_home_page.dart';
+
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
 
@@ -25,14 +27,14 @@ class _SplashViewState extends ConsumerState<SplashView> {
   Future<void> loadData() async {
     await FirebaseFirestore.instance.collection('products').get();
     // ignore: inference_failure_on_instance_creation
-    await Future.delayed(const Duration(seconds: 10));
+    await Future.delayed(const Duration(seconds: 5));
 
     // ignore: use_build_context_synchronously
     await Navigator.pushReplacement(
       context,
       // ignore: inference_failure_on_instance_creation
       MaterialPageRoute(
-        builder: (context) => const HomeView(),
+        builder: (context) => MyHomePage(),
       ),
     );
   }
@@ -44,8 +46,8 @@ class _SplashViewState extends ConsumerState<SplashView> {
   }
 
   final colorizeColors = [
-    ColorConstants.primaryColor,
-    const Color(0xffEB412A),
+    const Color(0xffFE7362),
+    Color(0xffEB412A),
     Colors.yellow,
     Colors.red,
   ];
