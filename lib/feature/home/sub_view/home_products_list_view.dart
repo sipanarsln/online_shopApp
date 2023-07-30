@@ -4,9 +4,8 @@ import 'package:kartal/kartal.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/models/products.dart';
 import 'package:online_shop/product/utility/exception/custom_exception.dart';
-
-import '../../../product/widget/text/product_name_text.dart';
-import '../../../product/widget/text/product_price_text.dart';
+import 'package:online_shop/product/widget/text/product_name_text.dart';
+import 'package:online_shop/product/widget/text/product_price_text.dart';
 
 class HomeListView extends StatelessWidget {
   const HomeListView({
@@ -97,7 +96,8 @@ class HomeListView extends StatelessWidget {
                               child: IconButton(
                                 onPressed: () {},
                                 iconSize: 20,
-                                padding: EdgeInsets.only(bottom: 2, right: 0),
+                                padding:
+                                    const EdgeInsets.only(bottom: 2, right: 0),
                                 icon: const Icon(Icons.shopping_bag_outlined),
                                 color: Colors.white,
                               ),

@@ -4,7 +4,10 @@ import 'package:online_shop/feature/home/sub_view/bottom_nav_bar.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -29,22 +32,22 @@ class _MyHomePageState extends State<MyHomePage> {
       onItemSelected: (index) => setState(() => _currentIndex = index),
       items: <BottomNavyBarItem>[
         BottomNavyBarItem(
-          icon: Icon(Icons.apps),
-          title: Text('Home'),
+          icon: const Icon(Icons.apps),
+          title: const Text('Home'),
           activeColor: _activeColor,
           inactiveColor: _inactiveColor,
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.people),
-          title: Text('Product'),
+          icon: const Icon(Icons.people),
+          title: const Text('Product'),
           activeColor: ColorConstants.primaryColor,
           inactiveColor: _inactiveColor,
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.message),
-          title: Text(
+          icon: const Icon(Icons.message),
+          title: const Text(
             'Fav ',
           ),
           activeColor: _activeColor,
@@ -52,8 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.settings),
-          title: Text('Profile'),
+          icon: const Icon(Icons.settings),
+          title: const Text('Profile'),
           activeColor: _activeColor,
           inactiveColor: _inactiveColor,
           textAlign: TextAlign.center,

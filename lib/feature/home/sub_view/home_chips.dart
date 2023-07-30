@@ -26,9 +26,11 @@ class _PassiveChip extends StatelessWidget {
       label: Text(
         'label passive',
         style:
+            // ignore: deprecated_member_use
             context.textTheme.bodySmall?.copyWith(color: ColorConstants.gray),
       ),
       backgroundColor: ColorConstants.grayLighter,
+      // ignore: deprecated_member_use
       padding: context.paddingLow,
     );
   }
