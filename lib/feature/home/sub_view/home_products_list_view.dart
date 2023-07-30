@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:online_shop/feature/detail/product_detail_screen.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/models/products.dart';
 import 'package:online_shop/product/utility/exception/custom_exception.dart';
@@ -50,61 +51,75 @@ class HomeListView extends StatelessWidget {
                 itemCount: values.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
-                  return Card(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
+                  // ignore: cast_nullable_to_non_nullable
+                  final product = values[index] as Products;
+
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        // ignore: inference_failure_on_instance_creation
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailScreen(product),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
                       ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.network(
-                          fit: BoxFit.cover,
-                          values[index]?.image ?? '',
-                          // ignore: deprecated_member_use
-                          height: context.dynamicHeight(.2),
-                        ),
-                        Padding(
-                          padding: context.paddingLow / 1.3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ProductName(
-                                text: values[index]?.title ?? '',
-                                color: ColorConstants.black,
-                              ),
-                              ProductPrice(
-                                text: values[index]?.price ?? '',
-                                color: ColorConstants.primaryColor,
-                              ),
-                            ],
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.network(
+                            fit: BoxFit.cover,
+                            values[index]?.image ?? '',
+                            // ignore: deprecated_member_use
+                            height: context.dynamicHeight(.2),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              margin: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: ColorConstants.primaryColor,
-                              ),
-                              child: IconButton(
-                                onPressed: () {},
-                                iconSize: 20,
-                                padding:
-                                    const EdgeInsets.only(bottom: 2, right: 0),
-                                icon: const Icon(Icons.shopping_bag_outlined),
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                          Padding(
+                            padding: context.paddingLow / 1.3,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ProductName(
+                                  text: values[index]?.title ?? '',
+                                  color: ColorConstants.black,
+                                ),
+                                ProductPrice(
+                                  text: values[index]?.price ?? '',
+                                  color: ColorConstants.primaryColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                margin: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: ColorConstants.primaryColor,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  iconSize: 20,
+                                  padding: const EdgeInsets.only(
+                                      bottom: 2, right: 0),
+                                  icon: const Icon(Icons.shopping_bag_outlined),
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
