@@ -16,4 +16,6 @@ class StringConstants {
   static const String contunieToApp = 'Continue to app';
   static const String homeWelcomeBack = 'Welcome back!';
   static const String homeSearchHint = 'Search';
+  static const String selectSize = 'Select Your Size';
+  static const String productDescription = 'Description';
 }

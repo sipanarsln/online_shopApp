@@ -11,7 +11,7 @@ class SizeList extends StatefulWidget {
 class _SizeListState extends State<SizeList> {
   final List<String> sizeList = ['S', 'M', 'L'];
 
-  var currentSelected = 0;
+  int currentSelected = 0;
   @override
   Widget build(BuildContext context) {
     return Container(

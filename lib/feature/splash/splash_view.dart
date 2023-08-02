@@ -2,11 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:online_shop/feature/home/sub_view/bottom_home_page.dart';
 import 'package:online_shop/feature/splash/splash_proiver.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
-import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/enums/icon_constants.dart';
 
 class SplashView extends ConsumerStatefulWidget {
@@ -43,54 +41,57 @@ class _SplashViewState extends ConsumerState<SplashView> {
     loadData();
   }
 
-  final colorizeColors = [
-    const Color(0xffFE7362),
-    const Color(0xffEB412A),
-    Colors.yellow,
-    Colors.red,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff13C0EB),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconConstants.appIcon.toImage,
-            AnimatedTextKit(
-              animatedTexts: [
-                ColorizeAnimatedText(
-                  StringConstants.appName,
-                  colors: colorizeColors,
-                  textStyle: context.textTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 55,
-                    shadows: [
-                      Shadow(
-                        color: ColorConstants.black,
-                        offset: const Offset(5, 3),
-                      )
+      backgroundColor: ColorConstants.grayLighter,
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 200),
+            child: IconConstants.appIcon.toImage,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40),
+            child: Row(
+              children: <Widget>[
+                const Text(
+                  'Online ',
+                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                ),
+                DefaultTextStyle(
+                  style: const TextStyle(
+                    fontSize: 60,
+                  ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      RotateAnimatedText(
+                        'Shop',
+                        transitionHeight: 75,
+                        textStyle: TextStyle(
+                          color: ColorConstants.primaryColor,
+                          fontSize: 60,
+                        ),
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
+          )
 
-            // AnimatedTextKit(
-            //   animatedTexts: [
-            //     WavyAnimatedText(
-            //       StringConstants.appName,
-            //       textStyle: context.textTheme.headlineMedium?.copyWith(
-            //         fontWeight: FontWeight.bold,
-            //         letterSpacing: 10,
-            //       ),
-            //     ),
-            //   ],
-            // ),
-          ],
-        ),
+          // AnimatedTextKit(
+          //   animatedTexts: [
+          //     WavyAnimatedText(
+          //       StringConstants.appName,
+          //       textStyle: context.textTheme.headlineMedium?.copyWith(
+          //         fontWeight: FontWeight.bold,
+          //         letterSpacing: 10,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+        ],
       ),
     );
   }
