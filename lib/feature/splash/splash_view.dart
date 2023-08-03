@@ -23,7 +23,7 @@ class _SplashViewState extends ConsumerState<SplashView> {
   Future<void> loadData() async {
     await FirebaseFirestore.instance.collection('products').get();
     // ignore: inference_failure_on_instance_creation
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 1));
 
     // ignore: use_build_context_synchronously
     await Navigator.pushReplacement(

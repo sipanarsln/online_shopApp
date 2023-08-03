@@ -5,8 +5,6 @@ import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/initialize/app_theme.dart';
 import 'package:online_shop/product/initialize/application_start.dart';
 
-import 'auth/authentication_view.dart';
-
 Future<void> main() async {
   await ApplicationStart.init();
   runApp(const ProviderScope(child: MyApp()));

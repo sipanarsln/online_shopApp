@@ -1,57 +1,93 @@
+import 'package:counter_button/counter_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
 import 'package:online_shop/feature/detail/widget/size_list.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/constants/string_constants.dart';
 import 'package:online_shop/product/models/products.dart';
-import 'package:online_shop/product/widget/text/product_name_text.dart';
 
-class ProductDetailScreen extends ConsumerWidget {
+import 'package:online_shop/product/widget/fav_button.dart';
+
+class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen(this.products, {super.key});
 
   final Products products;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  // ignore: library_private_types_in_public_api
+  _ProductDetailScreenState createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int _counterValue = 1;
+  double _productPrice = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // İlgili ürünün fiyatını başlangıçta _productPrice değişkenine atayalım
+    _productPrice = double.parse(widget.products.price ?? '0');
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
-              _productImage(products: products),
+              _productImage(products: widget.products),
               Positioned(
                 top: 60,
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.keyboard_arrow_left_outlined,
                     size: 40,
+                    color: ColorConstants.white,
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 65,
                 right: 10,
-                child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.favorite_border,
-                      size: 30,
-                    )),
-              )
+                child: FavButton(),
+              ),
             ],
           ),
           const SizedBox(height: 15),
-          _productName(products: products),
+          _productName(products: widget.products),
           const _fontSizeText(),
-          const SizeList(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizeList(),
+              Padding(
+                padding: context.padding.onlyRightMedium,
+                child: CounterButton(
+                  loading: false,
+                  onChange: (int val) {
+                    setState(() {
+                      _counterValue = val;
+                      _productPrice = _productPrice =
+                          double.parse(widget.products.price ?? '0') *
+                              _counterValue;
+                    });
+                  },
+                  count: _counterValue,
+                  countColor: ColorConstants.primaryColor,
+                  buttonColor: ColorConstants.primaryColor,
+                  progressColor: Colors.purpleAccent,
+                ),
+              ),
+            ],
+          ),
           const _description(),
-          _descriptionDetails(products: products),
+          _descriptionDetails(products: widget.products),
           Padding(
             padding: context.padding.low +
                 context.padding.onlyTopMedium / 1.2 +
@@ -60,7 +96,7 @@ class ProductDetailScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  products.price ?? '',
+                  '\$${_productPrice.toStringAsFixed(0)}',
                   style: GoogleFonts.inter(
                     textStyle: TextStyle(
                       fontSize: 30,
@@ -78,10 +114,12 @@ class ProductDetailScreen extends ConsumerWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'Shop Now',
+                      StringConstants.shopNow,
                       style: GoogleFonts.inter(
                         textStyle: TextStyle(
-                            color: ColorConstants.white, fontSize: 35),
+                          color: ColorConstants.white,
+                          fontSize: 35,
+                        ),
                       ),
                     ),
                   ),
@@ -95,10 +133,9 @@ class ProductDetailScreen extends ConsumerWidget {
   }
 }
 
+// ignore: camel_case_types
 class _fontSizeText extends StatelessWidget {
-  const _fontSizeText({
-    super.key,
-  });
+  const _fontSizeText();
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +155,9 @@ class _fontSizeText extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class _description extends StatelessWidget {
-  const _description({
-    super.key,
-  });
+  const _description();
 
   @override
   Widget build(BuildContext context) {
@@ -141,9 +177,9 @@ class _description extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class _descriptionDetails extends StatelessWidget {
   const _descriptionDetails({
-    super.key,
     required this.products,
   });
 
@@ -166,9 +202,9 @@ class _descriptionDetails extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class _productName extends StatelessWidget {
   const _productName({
-    super.key,
     required this.products,
   });
 

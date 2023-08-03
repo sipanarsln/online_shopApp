@@ -18,4 +18,5 @@ class StringConstants {
   static const String homeSearchHint = 'Search';
   static const String selectSize = 'Select Your Size';
   static const String productDescription = 'Description';
+  static const String shopNow = 'Shop Now';
 }

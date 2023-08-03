@@ -16,6 +16,7 @@ class _SizeListState extends State<SizeList> {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
+      width: 220,
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
