@@ -55,7 +55,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               const Positioned(
                 top: 65,
                 right: 10,
-                child: FavButton(),
+                child: FavButton(
+                  buttonSize: 30,
+                ),
               ),
             ],
           ),

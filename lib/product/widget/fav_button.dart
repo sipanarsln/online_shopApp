@@ -1,15 +1,22 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import '../constants/color_constants.dart';
 
 class FavButton extends StatefulWidget {
-  const FavButton({super.key});
+  const FavButton({
+    super.key,
+    required this.buttonSize,
+  });
+
+  final double buttonSize;
 
   @override
   State<FavButton> createState() => _FavButtonState();
 }
 
-Color _iconColor = Colors.white;
+Color _iconColor = ColorConstants.white;
 
 class _FavButtonState extends State<FavButton> {
   @override
@@ -26,7 +33,7 @@ class _FavButtonState extends State<FavButton> {
       },
       icon: Icon(
         Icons.favorite_outlined,
-        size: 30,
+        size: widget.buttonSize,
         color: _iconColor,
       ),
     );

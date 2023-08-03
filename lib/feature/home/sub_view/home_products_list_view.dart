@@ -5,6 +5,7 @@ import 'package:online_shop/feature/detail/product_detail_screen.dart';
 import 'package:online_shop/product/constants/color_constants.dart';
 import 'package:online_shop/product/models/products.dart';
 import 'package:online_shop/product/utility/exception/custom_exception.dart';
+import 'package:online_shop/product/widget/index.dart';
 import 'package:online_shop/product/widget/text/product_name_text.dart';
 import 'package:online_shop/product/widget/text/product_price_text.dart';
 
@@ -74,11 +75,22 @@ class HomeListView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.network(
-                            fit: BoxFit.cover,
-                            values[index]?.image ?? '',
-                            // ignore: deprecated_member_use
-                            height: context.dynamicHeight(.2),
+                          Stack(
+                            children: [
+                              Image.network(
+                                fit: BoxFit.cover,
+                                values[index]?.image ?? '',
+                                // ignore: deprecated_member_use
+                                height: context.dynamicHeight(.2),
+                              ),
+                              const Positioned(
+                                top: 0,
+                                right: 0,
+                                child: FavButton(
+                                  buttonSize: 25,
+                                ),
+                              )
+                            ],
                           ),
                           Padding(
                             padding: context.paddingLow / 1.3,
